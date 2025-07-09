@@ -11,7 +11,7 @@ const addedBlock = document.querySelector(".added__block");
 const buttonAddedLocation = document.querySelector(".add__locations__list");
 const weatherDegress = document.querySelector(".temperature__text");
 
-let favoriteCities = []
+export let favoriteCities = []
 
 
 const storageItem = localStorage.getItem('cities');
@@ -56,13 +56,14 @@ searchCityForm.addEventListener("submit", (e) => {
 });
 
 buttonAddedLocation.addEventListener("click", () => {
-  if (cityPoint.textContent !== "город") {
+  const cityName = cityPoint.textContent 
+  if (cityName !== "город" && !favoriteCities.includes(cityName)) {
     // Добавляем визуально
-    addCity(cityPoint.textContent, addedBlock);
+    addCity(cityName, addedBlock);
 
     // Если такого города ещё нет в массиве — добавляем и сохраняем
-    if (!favoriteCities.includes(cityPoint.textContent)) {
-      favoriteCities.push(cityPoint.textContent);
+    if (!favoriteCities.includes(cityName)) {
+      favoriteCities.push(cityName);
       localStorage.setItem('cities', JSON.stringify(favoriteCities));
     }
   }

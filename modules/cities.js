@@ -3,7 +3,7 @@ import { createDomElement } from './utils.js';
 import { getWeatherByCityForecast, getWeatherByCityCurrent } from './api.js';
 import { updateWeatherUI, updateCityIcon } from './dom.js';
 import { getForecastWeather} from './forecast.js';
-
+import { favoriteCities } from '../index.js';
 // Счётчик id и массив городов остаются такими же
 
 
@@ -40,12 +40,22 @@ getWeatherByCityForecast(name).then(info => {
   });
 
   // Клик по кнопке удаления – удаляем из DOM и массива
-  removeButton.addEventListener("click", (e) => {
-    e.stopPropagation();
-    container.removeChild(locationAdded);
-    const index = arrCityWeather.city.findIndex(c => c.id === newCity.id);
-    if (index !== -1) arrCityWeather.city.splice(index, 1);
-      
-  });
-}
+removeButton.addEventListener("click", (e) => {
+  e.stopPropagation();
 
+  // Получаем имя города из span внутри locationAdded
+  const cityName = locationAdded.querySelector("span").textContent;
+
+  // Ищем индекс в массиве
+  const index = favoriteCities.indexOf(cityName);
+
+  // Если нашли, удаляем из массива
+  if (index !== -1) {
+    favoriteCities.splice(index, 1);
+    // Сохраняем обновленный массив в localStorage, если нужно
+    localStorage.setItem('cities', JSON.stringify(favoriteCities));
+  }
+
+  // Удаляем элемент из DOM
+  container.removeChild(locationAdded);
+})}
