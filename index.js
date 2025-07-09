@@ -29,6 +29,7 @@ if (storageItem) {
   }
 }
 
+
 searchCityForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const input = document.querySelector(".input__search");
