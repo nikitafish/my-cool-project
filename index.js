@@ -58,10 +58,8 @@ searchCityForm.addEventListener("submit", (e) => {
 buttonAddedLocation.addEventListener("click", () => {
   const cityName = cityPoint.textContent 
   if (cityName !== "город" && !favoriteCities.includes(cityName)) {
-    // Добавляем визуально
     addCity(cityName, addedBlock);
 
-    // Если такого города ещё нет в массиве — добавляем и сохраняем
     if (!favoriteCities.includes(cityName)) {
       favoriteCities.push(cityName);
       localStorage.setItem('cities', JSON.stringify(favoriteCities));
