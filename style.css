@@ -214,3 +214,20 @@ body {
 #remove__button__js:hover {
   color: #d9363e;
 }
+@media (max-width: 500px) {
+  body {
+    font-size: 14px;
+    background-color: none;}
+  .down__block {
+    display: flex;
+    flex-direction: column;
+  }
+
+  span {
+    font-size: 10px;
+  }
+  .main {
+    height: 100vh;
+    border-radius: 0px;
+  }
+}
